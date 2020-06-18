@@ -1,4 +1,3 @@
 Rails.application.routes.draw do
-  get "posts/index" => "posts#index"
-  get "posts/:id" => "posts#show"
+  resources :posts, only: [:index, :show, :new]
 end
