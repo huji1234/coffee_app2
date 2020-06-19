@@ -10,4 +10,22 @@ class PostsController < ApplicationController
     def new
         @post = Post.new
     end
+    
+    def create
+        @post = Post.new(post_params)
+        
+        if @post.save
+            flash[:notice] = '投稿に成功しました'
+            redirect_to @post
+        else
+            flash.now[:danger] = '投稿に失敗しました'
+            render :new
+        end
+    end
+    
+    private
+    
+    def post_params
+        params.require(:post).permit(:drink, :description)
+    end
 end
