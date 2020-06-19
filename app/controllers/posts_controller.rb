@@ -26,6 +26,18 @@ class PostsController < ApplicationController
     def edit
         @post = Post.find(params[:id])
     end
+    
+    def update
+        @post = Post.find(params[:id])
+        
+        if @post.update(post_params)
+            flash[:success] = '投稿は正常に更新されました'
+            redirect_to @post
+        else
+            flash.now[:danger] = '投稿は更新されませんでした'
+            render :edit
+        end
+    end
 
     
     private
