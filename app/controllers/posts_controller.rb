@@ -38,6 +38,14 @@ class PostsController < ApplicationController
             render :edit
         end
     end
+    
+    def destroy
+        @post = Post.find(params[:id])
+        @post.destroy
+        
+        flash[:success] = '投稿は正常に削除されました'
+        redirect_to posts_url
+    end
 
     
     private
